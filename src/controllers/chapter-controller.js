@@ -1,5 +1,7 @@
 import ChapterService from "../services/chapter-service.js";
 import logger from "../utils/logger.js";
+import redisClient from "../config/redis.js";
+
 
 const chapterService = new ChapterService();
 
@@ -16,7 +18,21 @@ const getAllChapters = async (req, res) => {
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 10;
 
+    const cacheKey = `chapters:${JSON.stringify({ filters, page, limit })}`;
+    const cachedData = await redisClient.get(cacheKey);
+    if (cachedData) {
+      console.log("Serving from Redis cache");
+      return res.status(200).json({
+        success: true,
+        data: JSON.parse(cachedData),
+        message: "Chapters retrieved from cache",
+        error: null,
+      });
+    }
+
     const data = await chapterService.getAllChapters({ filters, page, limit });
+    await redisClient.setex(cacheKey, 3600, JSON.stringify(data));
+
     return res.status(200).json({ 
         success: true, 
         data: data ,
@@ -78,6 +94,12 @@ const uploadChapters = async (req, res) => {
     }
 
     const result = await chapterService.uploadChaptersFromJSON(jsonArray);
+    const keys = await redisClient.keys("chapters:*");
+    if (keys.length) {
+        await redisClient.del(keys);
+        logger.info("Cache cleared for chapters");
+    }
+    
 
     return res.status(201).json({
       success: true,
