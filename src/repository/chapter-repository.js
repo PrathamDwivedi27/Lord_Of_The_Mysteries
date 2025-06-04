@@ -50,24 +50,20 @@ class ChapterRepository {
 
   }
 
-  async insertChapters(chapters) {
-    const results = {
-      inserted: [],
-      failed: []
-    };
-
-    for (const chapterData of chapters) {
+  async insertChapters(chapterData) {
       try {
         const chapter = new this.chapterModel(chapterData);
         await chapter.validate();
-        await chapter.save();
-        results.inserted.push(chapter);
+        return await chapter.save();
       } catch (error) {
-        results.failed.push({ chapter: chapterData, error: error.message });
+        logger.error("Error in insertChapters:", error);
+        throw error;
       }
-    }
+  }
 
-    return results;
+  async isDuplicate(chapterData) {
+    const { subject, chapter, class: className, unit } = chapterData;
+    return await this.chapterModel.findOne({ subject, chapter, class: className, unit });
   }
 
 }
