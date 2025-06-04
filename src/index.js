@@ -31,3 +31,21 @@ const setup_and_start_server=()=>{
 }
 
 setup_and_start_server();
+
+
+// shutdown server in case of crash or interruption like ctrl+c
+const handleServerShutdown=async ()=>{
+    try {
+        console.log("Shutting down server...");
+        console.log("Server shutdown complete.");
+        await mongoose.connection.close();
+        console.log("Database connection closed.");
+        process.exit(0);
+    } catch (error) {
+        console.error("Error during server shutdown:", error);
+        process.exit(1);
+    }
+}
+
+process.on('SIGINT', handleServerShutdown);
+process.on('SIGTERM', handleServerShutdown);
