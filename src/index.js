@@ -3,6 +3,7 @@ import bodyParser from 'body-parser';
 import { PORT } from './config/server-config.js';
 import { connectDB } from './config/db.js';
 import apiRoutes from './routes/index.js'
+import mongoose from 'mongoose';
 
 const app=express();
 
@@ -33,7 +34,7 @@ const setup_and_start_server=()=>{
 setup_and_start_server();
 
 
-// shutdown server in case of crash or interruption like ctrl+c
+// shutdown server in case of crash or interruption like ctrl+c or kill command
 const handleServerShutdown=async ()=>{
     try {
         console.log("Shutting down server...");
