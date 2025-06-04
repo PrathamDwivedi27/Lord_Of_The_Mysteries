@@ -4,6 +4,7 @@ import { PORT } from './config/server-config.js';
 import { connectDB } from './config/db.js';
 import apiRoutes from './routes/index.js'
 import mongoose from 'mongoose';
+import logger from './utils/logger.js';
 
 const app=express();
 
@@ -27,7 +28,7 @@ app.get('/', (req, res) => {
 
 const setup_and_start_server=()=>{
     app.listen(PORT,()=>{
-        console.log(`Server is running on port ${PORT}`);
+        logger.info(`Server is running on port ${PORT}`);
     })
 }
 
@@ -37,13 +38,13 @@ setup_and_start_server();
 // shutdown server in case of crash or interruption like ctrl+c or kill command
 const handleServerShutdown=async ()=>{
     try {
-        console.log("Shutting down server...");
-        console.log("Server shutdown complete.");
+        logger.info("Shutting down server...");
+        logger.info("Server shutdown complete.");
         await mongoose.connection.close();
-        console.log("Database connection closed.");
+        logger.info("Database connection closed.");
         process.exit(0);
     } catch (error) {
-        console.error("Error during server shutdown:", error);
+        logger.error("Error during server shutdown:", error);
         process.exit(1);
     }
 }
