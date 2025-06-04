@@ -17,6 +17,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 connectDB();
 
 //routes
+app.use('/',()=>{
+    logger.info("Root route accessed");
+})
 app.use("/api",apiRoutes);
 
 
