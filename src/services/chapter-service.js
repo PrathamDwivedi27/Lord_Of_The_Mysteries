@@ -9,10 +9,10 @@ class ChapterService {
   async getAllChapters(queryParams) {
     try {
       const { filters, page, limit } = queryParams;
-      const { data, totalChapters, currentPage, totalPages } =
+      const { chapters, totalChapters, currentPage, totalPages } =
         await this.chapterRepository.findChapters(filters, page, limit);
       return {
-        data,
+        chapters,
         totalChapters,
         currentPage,
         totalPages,
@@ -48,7 +48,7 @@ class ChapterService {
             continue;
           }
 
-          await this.chapterRepository.createChapter(chapter);
+          await this.chapterRepository.insertChapters(chapter);
           inserted.push(chapter);
         } catch (err) {
           failed.push({ chapter: chapter.chapter, reason: err.message });

@@ -8,20 +8,21 @@ class ChapterRepository {
 
     async findChapters(filters, page, limit){
         try {
-           const matchStage={};
-           if (filters.class) matchStage.class=filters.class;
-           if (filters.subject) matchStage.subject=filters.subject;
-           if (filters.unit) matchStage.unit=filters.unit;
-           if (filters.status) matchStage.status=filters.status;
-           if (filters.isWeakChapter !== undefined) matchStage.isWeakChapter = filters.isWeakChapter;
+            const matchStage={};
+            if (filters.class) matchStage.class=filters.class;
+            if (filters.subject) matchStage.subject=filters.subject;
+            if (filters.unit) matchStage.unit=filters.unit;
+            if (filters.status) matchStage.status=filters.status;
+            if (filters.isWeakChapter !== undefined) matchStage.isWeakChapter = filters.isWeakChapter;
 
-           const skip= (page-1)*limit;
+            const skip= (page-1)*limit;
             const chapters = await this.chapterModel.aggregate([
                 { $match: matchStage },
                 { $sort: { createdAt: -1 } },
                 { $skip: skip },
                 { $limit: limit }
             ]);
+            
     
             const totalChapters = await this.chapterModel.countDocuments(matchStage);
     
