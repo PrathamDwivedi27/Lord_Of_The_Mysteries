@@ -1,0 +1,43 @@
+name: Deploy to EC2
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 16.x  # matches your EC2 node version
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build (if applicable)
+        run: npm run build --if-present
+
+      # - name: Run tests (optional)
+      #   run: npm test
+
+      - name: Deploy to EC2 via SSH
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: ${{ secrets.EC2_HOST }}           # EC2 public IP or domain
+          username: ${{ secrets.EC2_USERNAME }}   # e.g. ec2-user
+          key: ${{ secrets.EC2_SSH_KEY }}         # private key content (from repo secrets)
+          port: 22
+          script: |
+            cd /home/${{ secrets.EC2_USERNAME }}/Lord_Of_The_Mysteries
+            git pull origin main
+            npm install
+            pm2 stop app || true
+            pm2 start app.js --name "my-app"
+            pm2 save
