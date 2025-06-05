@@ -25,7 +25,7 @@ app.use("/api",apiRoutes);
 
 
 app.get('/', (req, res) => {
-    res.send('Mathango Assignment is on');
+    res.send('Mathango Assignment is on. My github actions is working fine.');
 });
 
 
