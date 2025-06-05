@@ -21,8 +21,7 @@ This project simulates real-world backend requirements like:
 
 ## 🔗 **Postman API Collection**
 
-👉 **[View Postman Collection](#)**  
-<sub>(*Replace this with your actual Postman collection URL*)</sub>
+👉 **[View Postman Collection](https://documenter.getpostman.com/view/39632752/2sB2x2JZFn)**  
 
 ---
 
