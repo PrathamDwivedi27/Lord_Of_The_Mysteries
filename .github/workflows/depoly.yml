@@ -32,7 +32,7 @@ jobs:
         with:
           host: ${{ secrets.EC2_HOST }}           # EC2 public IP or domain
           username: ${{ secrets.EC2_USERNAME }}   # e.g. ec2-user
-          key: ${{ secrets.EC2_SSH_KEY }}         # private key content (from repo secrets)
+          key: ${{ secrets.EC2_KEY }}         # private key content (from repo secrets)
           port: 22
           script: |
             cd /home/${{ secrets.EC2_USERNAME }}/Lord_Of_The_Mysteries
