@@ -1,42 +1,48 @@
 # 📊 Chapter Performance Dashboard - Backend
 
-## 🧩 Objective
+## 🧩 **Objective**
 
 Build a **RESTful API-based backend** for a **Chapter Performance Dashboard**.  
 This project simulates real-world backend requirements like:
 
-- Clean API design  
-- Data filtering and search  
-- Caching and rate limiting  
-- Performance optimization  
-- CI/CD deployment on AWS EC2  
+- **Clean API design**  
+- **Data filtering and search**  
+- **Caching and rate limiting**  
+- **Performance optimization**  
+- **CI/CD deployment on AWS EC2**  
 
 ---
 
-## 🔗 Postman API Collection
+## 🔗 **EC2 Deployment Link**
 
-👉 [View Postman Collection](#)  
-(*Replace this with your actual Postman collection URL*)
-
----
-
-## 🚀 Features & Best Practices
-
-✅ **Modular MVC architecture**  
-✅ **MongoDB indexing** for faster search and filter operations  
-✅ **Aggregation pipelines** to handle complex queries efficiently  
-✅ **Winston logger** for request and error logging  
-✅ **Redis caching** for repeated requests  
-✅ **Redis-based rate limiting** to prevent abuse  
-✅ **Environment-based config management** with `.env`  
-✅ **Graceful server shutdown** and DB disconnection  
-✅ **PM2** for process management in production  
-✅ **GitHub Actions CI/CD** — auto-deploy to EC2 on each push to `main`  
-✅ **Deployed on AWS EC2** with MongoDB Atlas and Redis
+👉 **[View EC2 Deployment](http://3.7.101.224:3000/)**  
 
 ---
 
-## 📁 Folder Structure
+## 🔗 **Postman API Collection**
+
+👉 **[View Postman Collection](#)**  
+<sub>(*Replace this with your actual Postman collection URL*)</sub>
+
+---
+
+## 🚀 **Features & Best Practices**
+
+- ✅ **Modular MVC architecture**
+- ✅ **MongoDB indexing** for faster search and filter operations
+- ✅ **Aggregation pipelines** to handle complex queries efficiently
+- ✅ **Winston logger** for request and error logging
+- ✅ **Redis caching** for repeated requests
+- ✅ **Redis-based rate limiting** to prevent abuse
+- ✅ **Environment-based config management** with `.env`
+- ✅ **Graceful server shutdown** and DB disconnection
+- ✅ **PM2** for process management in production
+- ✅ **GitHub Actions CI/CD** — auto-deploy to EC2 on each push to `main`
+- ✅ **Deployed on AWS EC2** with MongoDB Atlas and Redis
+
+---
+
+## 📁 **Folder Structure**
 
 ```bash
 📦 Project Root
@@ -72,3 +78,15 @@ This project simulates real-world backend requirements like:
 │   └── app.js
 ├── package.json
 └── .env
+```
+
+---
+
+## 👨‍💻 **About Me**
+
+I'm a **passionate backend developer** focused on building robust and scalable APIs.  
+I love working with **Node.js, MongoDB, Redis**, and cloud services like **AWS**.  
+This project demonstrates my understanding of **production-ready backend systems**.
+
+📧 **[pratham27dw@gmail.com](mailto:pratham27dw@gmail.com)**  
+🔗 [**LinkedIn**](https://www.linkedin.com/in/prathamdwivedi) | [**GitHub**](https://github.com/PrathamDwivedi27)
