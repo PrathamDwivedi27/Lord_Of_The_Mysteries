@@ -25,7 +25,7 @@ app.use("/api",apiRoutes);
 
 
 app.get('/', (req, res) => {
-    res.send('Mathango Assignment is ready.');
+    res.send('Assignment is ready.');
 });
 
 
